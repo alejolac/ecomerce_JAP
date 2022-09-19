@@ -199,3 +199,59 @@ a.custom-card:hover {
   text-align: center;
   margin-top: 30px;
 }
+
+.line {
+  display: flex;
+  justify-content: space-between;
+}
+
+.right {
+  text-align: right;
+}
+
+.especial {
+  max-width: 300px;
+}
+
+.titulo {
+  font-weight: 600;
+}
+
+.line p {
+  font-size: 20px;
+}
+
+.marginTop {
+  margin-top: 1px;
+}
+
+
+.titleComent {
+  font-weight: 700;
+  color: black;
+}
+
+.comentDiv {
+  border-top: 1px solid rgb(194, 191, 191);
+  border-left: 1px solid rgb(194, 191, 191);
+  margin-bottom: 30px;
+  
+}
+
+.comentDiv p {
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+.formW {
+  width: 50%;
+}
+
+.formH {
+  height: 100px;
+}
+
+.formS {
+  width: 16%;
+  height: 50px;
+}

@@ -13,6 +13,7 @@ function logica (a) {
     const con = document.getElementById("contraseña").value;
     const err1 = document.getElementById("error_i1");
     const err2 = document.getElementById("error_i2");
+    
     err1.innerHTML = "";
     err2.innerHTML = "";
     document.getElementById("error1").innerHTML = "";
@@ -37,6 +38,7 @@ function logica (a) {
     }
 
     if (contador == 2) {
+        localStorage.setItem("Usuario", usu);
         window.location.href = "home.html";
     }
 

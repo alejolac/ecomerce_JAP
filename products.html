@@ -10,6 +10,7 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/0fb83c0ce1.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -36,20 +37,51 @@
       </div>
     </div>
   </nav>
-  <main class="pb-5 container">
-    <div class="container">
-      <div class="titulo">
-        <h1>Productos</h2>
-        <p>Verás aquí todos los productos de la categoria Autos<p>
+ 
+  <main class="pb-5">
+      <div class="text-center p-4">
+          <h1>Productos</h2>
+          <p>Verás aquí todos los productos de la categoria Autos<p>
       </div>
 
-      <div class="row">
-        <div class="list-group" id="cat-list-container">  </div>
+      <div class="container">
+        <div class="row">
+          <div class="col text-end">
+            <div class="btn-group btn-group-toggle mb-4" data-bs-toggle="buttons">
+              <input type="radio" class="btn-check" name="options" id="filtroMin">
+              <label class="btn btn-light" for="filtroMin"><i class="fa-solid fa-arrow-down-wide-short"></i>$</label>
+              <input type="radio" class="btn-check" name="options" id="filtroMax">
+              <label class="btn btn-light" for="filtroMax"><i class="fa-solid fa-arrow-up-wide-short"></i>$</label>
+              <input type="radio" class="btn-check" name="options" id="filtroRelevancia" checked>
+              <label class="btn btn-light" for="filtroRelevancia"><i class="fas fa-sort-amount-down mr-1"></i>Rel</label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 offset-lg-6 col-md-12 mb-1 container" >
+            <div class="row container p-0 m-0">
+              <div class="col">
+                <p class="font-weight-normal text-end my-2">Precio:</p>
+              </div>
+              <div class="col">
+                <input class="form-control" type="number" placeholder="Min." min="0" id="precioMin">
+              </div>
+              <div class="col">
+                <input class="form-control" type="number" placeholder="Max." min="0" id="precioMax">
+              </div>
+              <div class="col-3 p-0">
+                <div class="btn-group" role="group">
+                  <button class="btn btn-light btn-block" id="rangoPrecio">Filtrar</button>
+                  <button class="btn btn-link btn-sm" id="cleaner">Limpiar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="list-group" id="cat-list-container">  </div>
+        </div>
       </div>
-    </div>
-
-
-    </div>
   </main>
   <footer class="text-muted">
     <div class="container">
@@ -73,5 +105,4 @@
   <script src="js/init.js"></script>
   <script src="js/products.js"></script>
 </body>
-
 </html>
