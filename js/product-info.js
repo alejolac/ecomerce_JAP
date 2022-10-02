@@ -7,6 +7,7 @@ const workspace = document.getElementById("workspace");
 const workspaceComent = document.getElementById("workspaceComent");
 
 
+
 mostrarDatosProduct = () => {
     let html = `
     <div class="my-4" >
@@ -38,7 +39,7 @@ mostrarDatosProduct = () => {
         </div>
     
         <div class="col-lg-7">
-        <div id="carouselExampleIndicators" class="carousel slide " data-bs-ride="true" >
+        <div id="carouselExampleIndicators" class="carousel slide border border-dark" data-bs-ride="true" >
             <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -122,11 +123,40 @@ star = () => {
 }
 
 
+setCatID = a => {
+    localStorage.setItem("catID", a);
+    window.location = "product-info.html"
+}
+
+relacion = () => {
+    let html = "";
+    let info = productoInfo.relatedProducts
+    for(i=0; i < info.length; i++) {
+        let conector = info[i];
+
+        html = `
+        <div role="button" class="card  border border-dark" style="width: 18rem;" onclick="setCatID(${conector.id})">
+          <img src="${conector.image}" class="card-img-top" alt="...">
+          <div class="card-body border-top border-dark">
+            <p class="card-text">${conector.name}</p>
+          </div>
+        </div>
+      `
+
+      document.getElementById("relation").innerHTML += html
+    }
+
+    
+}
+
+
 
 document.addEventListener("DOMContentLoaded", function() {
+    SetUser();
     getJSONData(PRODUCT_INFO_URL).then(function(respuesta) {
         if(respuesta.status == "ok") {
             productoInfo = respuesta.data;
+            console.log(PRODUCT_INFO_URL);
             mostrarDatosProduct();
             getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(respuestaComent) {
                 if(respuestaComent.status == "ok") {
@@ -134,6 +164,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     console.log(productoComent);
                     mostrarComent();
                     star();
+                    relacion();
                     
                     
                 }

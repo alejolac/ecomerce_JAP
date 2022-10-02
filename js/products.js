@@ -92,6 +92,7 @@ function filtroPrecio(sortCriteria, productArray){
 
 
 document.addEventListener("DOMContentLoaded", function(e){
+    SetUser();
     getJSONData(productss).then(function(resultObj){
         if (resultObj.status === "ok"){
             currentProductArray = resultObj.data.products

@@ -40,3 +40,13 @@ let getJSONData = function(url){
         return result;
     });
 }
+
+let SetUser = function() {
+  const a = document.getElementById("dropdownMenuLink");
+  a.innerHTML = localStorage.getItem("Usuario")
+
+  document.getElementById("logout").addEventListener("click", function() {
+    localStorage.removeItem("Usuario")
+    window.location = "index.html"
+});
+}

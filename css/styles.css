@@ -255,3 +255,9 @@ a.custom-card:hover {
   width: 16%;
   height: 50px;
 }
+
+.relacion {
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
+}
