@@ -261,3 +261,21 @@ a.custom-card:hover {
   width: 50%;
   justify-content: space-between;
 }
+
+.navbar {
+  max-height: 1%;
+}
+
+.cost {
+  max-width: 120px;
+}
+
+.tableTR {
+  font-size: 20px;
+}
+
+.containerSection {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+

@@ -43,13 +43,78 @@
       </div>
     </div>
   </nav>
-  <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+  <main class="containerSection">
+    <div class="text-center p-4">
+      <h2>Carrito de Compras</h2>
+    </div>
+
+    <table style="max-width: 1000px;" class="table table-striped container-sm">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">*</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Costo</th>
+          <th scope="col">Cantidad</th>
+          <th scope="col">Subtotal</th>
+        </tr>
+      </thead>
+      <tbody id="tableCart">
+   
+      </tbody>
+    </table>
+
+    <hr class="mt-5">
+    <form action="" id="form">
+
+      <h3 class="h3 mt-3" >Tipo de Envio</h3>
+      <div class="mt-4">
+        <div class="form-check my-2">
+          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+          <label class="form-check-label" for="exampleRadios1">
+            Premium 2 a 5 días (15%)
+          </label>
+        </div>
+        <div class="form-check my-2">
+          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+          <label class="form-check-label" for="exampleRadios2">
+            Express 5 a 8 días (7%)
+          </label>
+        </div>
+        <div class="form-check my-2">
+          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3" >
+          <label class="form-check-label" for="exampleRadios3">
+            Standard 12 a 15 días (5%)
+          </label>
+        </div>
+    </div>
+    <h3 class="h3 mt-5" >Direccion de Envio</h3>
+    <div class="row mt-3">
+      <div class="col-md-6">
+        <label for="inputEmail4" class="form-label">Calle</label>
+        <input type="email" class="form-control" id="inputEmail4">
+      </div>
+      <div class="col-md-4">
+        <label for="inputPassword4" class="form-label">Numero</label>
+        <input type="number" class="form-control" id="inputPassword4">
+      </div>
+      <div class="col-md-6 mt-3">
+        <label for="inputEmail44" class="form-label">Esquina</label>
+        <input type="email" class="form-control" id="inputEmail44">
       </div>
     </div>
+  
+    <div class="col-12 mt-3">
+      <button type="submit" class="btn btn-primary">Listo</button>
+    </div>
+
+    </form>
+    
+  <hr>
+
   </main>
+
+
+
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">

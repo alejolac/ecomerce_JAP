@@ -1,6 +1,7 @@
 productoInfo = {};   
 productoComent = [];
 let contador = 0
+let carrito = []
 
 
 const workspace = document.getElementById("workspace");
@@ -10,9 +11,13 @@ const workspaceComent = document.getElementById("workspaceComent");
 
 mostrarDatosProduct = () => {
     let html = `
-    <div class="my-4" >
-    <h2>${productoInfo.name}</h2>
+    <div class="d-flex justify-content-between my-5">
+        <div>
+            <h2>${productoInfo.name}</h2>
+        </div>
+        <button type="button" class="btn btn-success" onclick="cartPush()">Comprar</button>
     </div>
+    
     <hr>
     <div class="row g-5 marginTop">
         <div class="lista col-lg-5 order-md-last">
@@ -46,19 +51,8 @@ mostrarDatosProduct = () => {
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
             </div>
-            <div class="carousel-inner border">
-            <div class="carousel-item active border">
-                <img src="${productoInfo.images[0]}" class="d-block w-100 " alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="${productoInfo.images[1]}" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="${productoInfo.images[2]}" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="${productoInfo.images[3]}" class="d-block w-100" alt="...">
-            </div>
+            <div class="carousel-inner border" id="carruselImg">
+     
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -74,6 +68,33 @@ mostrarDatosProduct = () => {
     `
     
     workspace.innerHTML = html;
+    mostrarImg();
+}
+
+mostrarImg = () => {
+
+    html = "";
+    imagen = productoInfo.images;
+    for(let i = 0; i < imagen.length; i++) {
+        let img = imagen[i];
+        
+        if(img[i] == img[0]) {
+            html += `
+                <div class="carousel-item active border" >
+                    <img src="${img}" class="d-block w-100 " alt="...">
+                </div>
+            `
+        } else {
+            html += `
+                <div class="carousel-item">
+                    <img src="${img}" class="d-block w-100" alt="...">
+                </div>
+            `
+        }
+
+    } 
+    document.getElementById("carruselImg").innerHTML = html;
+
 }
 
 mostrarComent = () => {
@@ -84,11 +105,7 @@ mostrarComent = () => {
         html = `
             <div class="comentDiv">
                 <p class="text-muted"><span class="titleComent">${comentarios.user}</span> -  ${comentarios.dateTime} 
-                - <span class="fa fa-star"></span>
-                <span class="fa fa-star" id="star-1"></span>
-                <span class="fa fa-star" id="star-2"></span>
-                <span class="fa fa-star" id="star-3"></span>
-                <span class="fa fa-star" id="star-4"></span> <br> ${comentarios.description}</p>
+                - ${star(comentarios.score)} <br> ${comentarios.description}</p>
             </div>
         `
         
@@ -98,33 +115,8 @@ mostrarComent = () => {
     }
 };
 
-
-star = () => {
-    let estrellas = document.getElementsByClassName("fa-star");
-    let x = 0;
-    let y = 4;
-    let z = 0
-
-    for(let i = 0; i < productoComent.length; i++) {
-        let comentarios = productoComent[i];
-        z = 0
-        while(x <= y) {
-            
-            if(z < comentarios.score) {
-                estrellas[x].classList.add("checked");
-                
-            }
-            z++
-            x++;
-        }
-        y += 5;   
-    }
-
-}
-
-
-setCatID = a => {
-    localStorage.setItem("catID", a);
+setProductID = id => {
+    localStorage.setItem("productID", id);
     window.location = "product-info.html"
 }
 
@@ -135,7 +127,7 @@ relacion = () => {
         let conector = info[i];
 
         html = `
-        <div role="button" class="card  border border-dark" style="width: 18rem;" onclick="setCatID(${conector.id})">
+        <div role="button" class="card  border border-dark" style="width: 18rem;" onclick="setProductID(${conector.id})">
           <img src="${conector.image}" class="card-img-top" alt="...">
           <div class="card-body border-top border-dark">
             <p class="card-text">${conector.name}</p>
@@ -149,6 +141,15 @@ relacion = () => {
     
 }
 
+let z = 0
+
+cartPush = () => {
+   localStorage.setItem("test", 1)
+
+    }
+   
+
+
 
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -156,12 +157,12 @@ document.addEventListener("DOMContentLoaded", function() {
     getJSONData(PRODUCT_INFO_URL).then(function(respuesta) {
         if(respuesta.status == "ok") {
             productoInfo = respuesta.data;
-            console.log(PRODUCT_INFO_URL);
+           
             mostrarDatosProduct();
             getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(respuestaComent) {
                 if(respuestaComent.status == "ok") {
                     productoComent = respuestaComent.data
-                    console.log(productoComent);
+                 
                     mostrarComent();
                     star();
                     relacion();
@@ -176,49 +177,45 @@ document.addEventListener("DOMContentLoaded", function() {
 })
 
 
-/*
+
 
 document.getElementById("form").addEventListener("submit" , function (e) {
     let a = document.getElementById("selectForm").value;
-    let b = bdocument.getElementById("textArea").value;
+    let b = document.getElementById("textArea").value;
     e.preventDefault();
-    if(a != "" && b != "") {
-        
-        addComent(a,b);
-
+    if(a != "Puntuación") {
+        if(b != "") {
+            addComent(a,b);
+        }      
     } else {
-    
+        alert("Selecciona una Puntuacion")
     }
-    
-
 })
 
-*/
-
-
-
-/* 
 addComent = (a, b) => {
     var today = new Date();
     var c = today.toLocaleString();
     let html = "";
-    
-    if (localStorage.getItem("Usuario") != undefined) {
         let d = localStorage.getItem("Usuario")
+        console.log("aa")
 
         html = `
         <div class="comentDiv">
             <p class="text-muted"><span class="titleComent">${d}</span> -  ${c} 
-            - <span class="fa fa-star"></span>
-            <span class="fa fa-star" id="star-1"></span>
-            <span class="fa fa-star" id="star-2"></span>
-            <span class="fa fa-star" id="star-3"></span>
-            <span class="fa fa-star" id="star-4"></span> <br> ${b}</p>
+            - ${star(a)} <br> ${b}</p>
         </div>
-    `
-    
+    `  
     workspaceComent.innerHTML += html;
-    }
-
 }
-*/
+
+star = (score) => {
+    let a = "";
+    for(i = 0; i <= 4; i++) {
+        if(i < score) {
+            a += `<span class="fa fa-star checked"></span>`
+        } else {
+            a += `<span class="fa fa-star"></span>`
+        }
+    } 
+    return a;
+} 

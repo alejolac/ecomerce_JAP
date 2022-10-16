@@ -5,6 +5,8 @@ const precioMax = "19";
 const precioMin = "91";
 const relevancia = "rel";
 let currentSortCriteria = undefined;
+let filtroNombreV = false;
+let filter = [];
 
 
 
@@ -39,23 +41,40 @@ filtrar = (condicion, array) => {
 
 }
 
-setCatID = id => {
-    localStorage.setItem("catID", id);
-    window.location = "product-info.html"
+filterNameInput = (search) => {
+    
+    console.log(search)
+    const val = search.toLowerCase()
+    filter = currentProductArray.filter((product) => (product.name.toLowerCase().includes(val)));
+    
+    showProductListF();
+
+    
+}
+
+
+setProductID = id => {
+    localStorage.setItem("productID", id);
+    window.location = "product-info.html"   
 }
 
 function showProductList(){
 
     let htmlContentToAppend = "";
+
+ 
+
     for(let i = 0; i < currentProductArray.length; i++){
         let products = currentProductArray[i];
 
+
+        
 
         if (((minCount == undefined) || (minCount != undefined && parseInt(products.cost) >= minCount)) &&
         ((maxCount == undefined) || (maxCount != undefined && parseInt(products.cost) <= maxCount))){
 
             htmlContentToAppend += `
-            <div onclick="setCatID(${products.id})" class="list-group-item list-group-item-action cursor-active">
+            <div onclick="setProductID(${products.id})" class="list-group-item list-group-item-action cursor-active">
                 <div class="row">
                     <div class="col-3">
                         <img src="${products.image}" alt="${products.description}" class="img-thumbnail">
@@ -75,6 +94,34 @@ function showProductList(){
         
         document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
     }
+
+}
+
+
+showProductListF = () => {
+    htmlContentToAppend = "";
+        for(let z = 0; z < filter.length; z++) {
+            let products = filter[z];
+
+            htmlContentToAppend +=  `
+            <div onclick="setCatID(${products.id})" class="list-group-item list-group-item-action cursor-active">
+                <div class="row">
+                    <div class="col-3">
+                        <img src="${products.image}" alt="${products.description}" class="img-thumbnail">
+                    </div>
+                    <div class="col">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h4 class="mb-1">${products.name} - ${products.currency} ${products.cost}</h4>
+                            <small class="text-muted">${products.soldCount} artículos</small>
+                        </div>
+                        <p class="mb-1">${products.description}</p>
+                    </div>
+                </div>
+            </div>
+            `
+        }
+
+        document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
 }
 
 function filtroPrecio(sortCriteria, productArray){
@@ -96,6 +143,7 @@ document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(productss).then(function(resultObj){
         if (resultObj.status === "ok"){
             currentProductArray = resultObj.data.products
+            filtroNombre = false;
             showProductList()
             
         }
@@ -145,5 +193,8 @@ document.addEventListener("DOMContentLoaded", function(e){
         filtroPrecio(relevancia);
     })
 
+    filterName.addEventListener("input", e => {
+        filterNameInput(filterName.value);
+    })
   
 });
