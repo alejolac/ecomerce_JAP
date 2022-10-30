@@ -53,8 +53,8 @@ filterNameInput = (search) => {
 }
 
 
-setProductID = id => {
-    localStorage.setItem("productID", id);
+setProductInfoID = id => {
+    localStorage.setItem("productInfoID", id);
     window.location = "product-info.html"   
 }
 
@@ -67,14 +67,11 @@ function showProductList(){
     for(let i = 0; i < currentProductArray.length; i++){
         let products = currentProductArray[i];
 
-
-        
-
         if (((minCount == undefined) || (minCount != undefined && parseInt(products.cost) >= minCount)) &&
         ((maxCount == undefined) || (maxCount != undefined && parseInt(products.cost) <= maxCount))){
 
             htmlContentToAppend += `
-            <div onclick="setProductID(${products.id})" class="list-group-item list-group-item-action cursor-active">
+            <div onclick="setProductInfoID(${products.id})" class="list-group-item list-group-item-action cursor-active">
                 <div class="row">
                     <div class="col-3">
                         <img src="${products.image}" alt="${products.description}" class="img-thumbnail">

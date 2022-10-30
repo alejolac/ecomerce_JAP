@@ -115,8 +115,8 @@ mostrarComent = () => {
     }
 };
 
-setProductID = id => {
-    localStorage.setItem("productID", id);
+setProductInfoID = id => {
+    localStorage.setItem("productInfoID", id);
     window.location = "product-info.html"
 }
 
@@ -127,7 +127,7 @@ relacion = () => {
         let conector = info[i];
 
         html = `
-        <div role="button" class="card  border border-dark" style="width: 18rem;" onclick="setProductID(${conector.id})">
+        <div role="button" class="card  border border-dark" style="width: 18rem;" onclick="setProductInfoID(${conector.id})">
           <img src="${conector.image}" class="card-img-top" alt="...">
           <div class="card-body border-top border-dark">
             <p class="card-text">${conector.name}</p>
@@ -141,17 +141,38 @@ relacion = () => {
     
 }
 
-let z = 0
 
 cartPush = () => {
-   localStorage.setItem("test", 1)
 
+    let arr = []
+    let arrLocal = []
+    let arrConcat = []
+
+    const object =  {
+        "id": productoInfo.id,
+        "name": productoInfo.name,
+        "image": productoInfo.images[0],
+        "currency": productoInfo.currency,
+        "unitCost": productoInfo.cost
+    } ;
+    arr.push(object);
+
+    if(localStorage.getItem("productoInfo") == undefined) {
+        let arrString = JSON.stringify(arr);
+        localStorage.setItem("productoInfo", arrString)
+    } else {
+        arrLocal = JSON.parse(localStorage.getItem("productoInfo"))
+        for(let z of arrLocal) {
+            if(z.id == productoInfo.id) {
+                alert("Este producto ya esta en el carrito!!!!")
+                return
+            }
+        }
+        arrConcat = arr.concat(arrLocal);
+        localStorage.setItem("productoInfo", JSON.stringify(arrConcat))   
     }
+}
    
-
-
-
-
 document.addEventListener("DOMContentLoaded", function() {
     SetUser();
     getJSONData(PRODUCT_INFO_URL).then(function(respuesta) {
@@ -175,9 +196,6 @@ document.addEventListener("DOMContentLoaded", function() {
         
     })
 })
-
-
-
 
 document.getElementById("form").addEventListener("submit" , function (e) {
     let a = document.getElementById("selectForm").value;

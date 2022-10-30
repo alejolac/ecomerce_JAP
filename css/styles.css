@@ -279,3 +279,18 @@ a.custom-card:hover {
   margin: 0 auto;
 }
 
+.title-secondary {
+  color: rgb(66, 65, 65);
+}
+
+.bank {
+  border: none;
+  background-color: white;
+  color: blue;
+  margin-left: 10px;
+  text-decoration: underline;
+}
+
+.black {
+  color: black!important;
+}
