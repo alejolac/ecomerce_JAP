@@ -9,9 +9,11 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/0fb83c0ce1.js" crossorigin="anonymous"></script>
 </head>
 
-<body >
+
+<body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -31,13 +33,14 @@
           </li>
           <li class="nav-item">
             <div class="dropdown">
-              <a class="btn btn-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"></a>
+              <a class="btn btn-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                data-bs-toggle="dropdown" aria-expanded="false"></a>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
                 <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
                 <li><a class="dropdown-item" href="#" id="logout">Cerrar sesión</a></li>
               </ul>
-            </div>     
+            </div>
           </li>
         </ul>
       </div>
@@ -47,7 +50,6 @@
     <div class="text-center p-4">
       <h2>Carrito de Compras</h2>
     </div>
-
     <table style="max-width: 1000px;" class="table table-striped container-sm border-start border-end">
       <thead class="table-dark">
         <tr>
@@ -56,170 +58,176 @@
           <th scope="col">Costo</th>
           <th scope="col">Cantidad</th>
           <th scope="col">Subtotal</th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody id="tableCart">
-   
+
       </tbody>
     </table>
 
     <hr class="mt-5">
     <form action="" id="form" class="needs-validation" novalidate>
 
-      <h3 class="h3 mt-3" >Tipo de Envio</h3>
+      <h3 class="h3 mt-3">Tipo de Envio</h3>
       <div class="mt-4">
         <div class="form-check my-2">
-          <input class="form-check-input checks no-form no-formCheck" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked oninput="calcCost()">
+          <input class="form-check-input checks no-form no-formCheck" type="radio" name="exampleRadios"
+            id="exampleRadios1" value="option1" checked oninput="calcCost()">
           <label class="form-check-label no-form" for="exampleRadios1">
             Premium 2 a 5 días (15%)
           </label>
         </div>
         <div class="form-check my-2">
-          <input class="form-check-input checks no-form no-formCheck" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" oninput="calcCost()">
+          <input class="form-check-input checks no-form no-formCheck" type="radio" name="exampleRadios"
+            id="exampleRadios2" value="option2" oninput="calcCost()">
           <label class="form-check-label no-form" for="exampleRadios2">
             Express 5 a 8 días (7%)
           </label>
         </div>
         <div class="form-check my-2 mb-5">
-          <input class="form-check-input checks no-form no-formCheck" type="radio" name="exampleRadios" id="exampleRadios3" value="option3"  oninput="calcCost()">
+          <input class="form-check-input checks no-form no-formCheck" type="radio" name="exampleRadios"
+            id="exampleRadios3" value="option3" oninput="calcCost()">
           <label class="form-check-label no-form" for="exampleRadios3">
             Standard 12 a 15 días (5%)
           </label>
         </div>
-    </div>
+      </div>
 
-   
-    <h3 class="h3 mt-5" >Direccion de Envio</h3>
-    <div class="row my-3">
-      <div class="col-md-6">
-        <label for="inputEmail4" class="form-label inputNeed myform">Calle</label>
-        <input type="text" class="form-control" id="inputEmail4" required>
-        <div class="invalid-feedback"> 
-          Debe ingresar una calle
-         </div>
-      </div>
-      <div class="col-md-4">
-        <label for="inputPassword4" class="form-label inputNeed ">Numero</label>
-        <input type="number" class="form-control" id="inputPassword4" required>
-        <div class="invalid-feedback"> 
-          Debe ingresar un numero de puerta
-         </div>
-      </div>
-      <div class="col-md-6 mt-3">
-        <label for="inputEmail44" class="form-label inputNeed">Esquina</label>
-        <input type="text" class="form-control" id="inputEmail44" required>
-        <div class="invalid-feedback"> 
-          Debe ingresar una esquina
-         </div>
-      </div>
-    </div>
-    
-    <hr>
 
-    <div class="container mt-5">
-      <h3>Costo</h3>
-      <ol class="list-group mt-3">
-        <li class="list-group-item d-flex justify-content-between align-items-start">
-          <div class="ms-2 me-auto text-muted">
-            <div class="fw-bold title-secondary">Subtotal</div>
+      <h3 class="h3 mt-5">Direccion de Envio</h3>
+      <div class="row my-3">
+        <div class="col-md-6">
+          <label for="inputEmail4" class="form-label inputNeed myform">Calle</label>
+          <input type="text" class="form-control" id="inputEmail4" required>
+          <div class="invalid-feedback">
+            Debe ingresar una calle
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label for="inputPassword4" class="form-label inputNeed ">Numero</label>
+          <input type="number" class="form-control" id="inputPassword4" required>
+          <div class="invalid-feedback">
+            Debe ingresar un numero de puerta
+          </div>
+        </div>
+        <div class="col-md-6 mt-3">
+          <label for="inputEmail44" class="form-label inputNeed">Esquina</label>
+          <input type="text" class="form-control" id="inputEmail44" required>
+          <div class="invalid-feedback">
+            Debe ingresar una esquina
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="container mt-5">
+        <h3>Costo</h3>
+        <ol class="list-group mt-3">
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto text-muted">
+              <div class="fw-bold title-secondary">Subtotal</div>
               Costo unitario del producto por cantidad
-          </div>
-          <div>
-            USD<span id="cost1"></span>
-          </div>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-start">
-          <div class="ms-2 me-auto text-muted">
-            <div class="fw-bold title-secondary">Costo de Envio</div>
-            Varia segun el tipo de envio
-          </div>
-          <div>
-            USD<span id="cost2"></span>
-          </div>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-start">
-          <div class="ms-2 me-auto text-muted">
-            <div class="fw-bold title-secondary">Total</div>
-          </div>
-          <div>
-            <strong>
-            USD<span id="cost3"></span>
-          </strong>
-          </div>
-        </li>
-      </ol>
-    </div>
+            </div>
+            <div>
+              USD<span id="cost1"></span>
+            </div>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto text-muted">
+              <div class="fw-bold title-secondary">Costo de Envio</div>
+              Varia segun el tipo de envio
+            </div>
+            <div>
+              USD<span id="cost2"></span>
+            </div>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto text-muted">
+              <div class="fw-bold title-secondary">Total</div>
+            </div>
+            <div>
+              <strong>
+                USD<span id="cost3"></span>
+              </strong>
+            </div>
+          </li>
+        </ol>
+      </div>
 
-    <hr>
+      <hr>
 
-    <div class="container mt-5">
-      <h3>Forma de Pago</h3>
-      <!-- Button trigger modal -->
-      <p class="mt-3 d-flex" id="payment">Cuenta bancaria 
-        <button type="button" class="bank" data-bs-toggle="modal" id() data-bs-target="#exampleModal" >
-          Seleccionar
-        </button>
-      </p>
-      <div class="invalid-feedback" style="font-size: 16px"> 
-        Debe ingresar un metodo de pago
-      </div>
-          
-    </div>
+      <div class="container mt-5">
+        <h3>Forma de Pago</h3>
+        <p class="mt-3 d-flex" id="payment">Cuenta bancaria
+          <button type="button" class="bank" data-bs-toggle="modal" id() data-bs-target="#exampleModal">
+            Seleccionar
+          </button>
+        </p>
+        <div class="invalid-feedback" style="font-size: 16px">
+          Debe ingresar un metodo de pago
+        </div>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel"><strong>Forma de Pago</strong></h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        <div class="ps-0 form-check">
-          <input class="" type="radio" name="flexRadioDefault" id="radiobtn1"  checked oninput="radioButton()">
-          <label class="" for="radiobtn1" >
-            Tarjeta de Credito
-          </label>
-        </div>
-        <hr>
-        <div class="row">
-          <div class="col-md-5">
-            <label for="cardNumber" class="form-label ">Numero de Tarjeta</label>
-            <input type="text" class="form-control inputRadio1" id="cardNumber" maxlength="16" required onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
-          </div>
-          <div class="col-md-4">
-            <label for="codeSecurity" class="form-label ">Codigo de seg.</label>
-            <input type="text" class="form-control inputRadio1" id="codeSecurity" maxlength="3" required onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
-          </div>
-          <div class="col-5 mt-3">
-            <label for="expiration" class="form-label ">Vencimiento (MM/AA)</label>
-            <input type="text" class="form-control inputRadio1" id="expiration" required >
-          </div>
-        </div>
-        <div class="ps-0 form-check mt-3">
-          <input class=" no-form" type="radio" name="flexRadioDefault" id="radiobtn2"  oninput="radioButton()">
-          <label class=" no-form" for="radiobtn2">
-            Transferencia bancaria
-          </label>
-        </div>
-        <hr>
-        <div class="row">
-          <div class="col-5 ">
-            <label for="accountNumber" class="form-label ">Numero de cuenta</label>
-            <input type="text" class="form-control inputRadio2" id="accountNumber" required onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel"><strong>Forma de Pago</strong></h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="ps-0 form-check">
+                <input class="" type="radio" name="flexRadioDefault" id="radiobtn1" checked oninput="radioButton()">
+                <label class="" for="radiobtn1">
+                  Tarjeta de Credito
+                </label>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-md-5">
+                  <label for="cardNumber" class="form-label ">Numero de Tarjeta</label>
+                  <input type="text" class="form-control inputRadio1" id="cardNumber" maxlength="16" required
+                    onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
+                </div>
+                <div class="col-md-4">
+                  <label for="codeSecurity" class="form-label ">Codigo de seg.</label>
+                  <input type="text" class="form-control inputRadio1" id="codeSecurity" maxlength="3" required
+                    onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
+                </div>
+                <div class="col-5 mt-3">
+                  <label for="expiration" class="form-label ">Vencimiento (MM/AA)</label>
+                  <input type="text" class="form-control inputRadio1" id="expiration" required>
+                </div>
+              </div>
+              <div class="ps-0 form-check mt-3">
+                <input class=" no-form" type="radio" name="flexRadioDefault" id="radiobtn2" oninput="radioButton()">
+                <label class=" no-form" for="radiobtn2">
+                  Transferencia bancaria
+                </label>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-5 ">
+                  <label for="accountNumber" class="form-label ">Numero de cuenta</label>
+                  <input type="text" class="form-control inputRadio2" id="accountNumber" required
+                    onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
           </div>
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
       </div>
-    </div>
-  </div>
-</div>
-    </div>
-    <div class="d-grid mt-5">
-      <button class="btn btn-primary" >Finalizar Compra</button>
-    </div>
+      <div class="d-grid mt-5">
+        <button class="btn btn-primary">Finalizar Compra</button>
+      </div>
     </form>
   </main>
 
@@ -229,7 +237,7 @@
   <div id="alertFail">
 
   </div>
-  
+
 
   <footer class="text-muted">
     <div class="container">

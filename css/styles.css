@@ -294,3 +294,34 @@ a.custom-card:hover {
 .black {
   color: black!important;
 }
+
+.trash {
+  text-align: center;
+}
+
+.bordeTrash {
+  color: red;
+  border: 1px solid red;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.bordeTrash:hover {
+  background-color: red;
+  color:white;
+  cursor: pointer;
+}
+
+.container-perfil {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.imgProfile {
+  max-width: 150px;
+  border: 1px solid rgb(212, 212, 212);
+}
+
+.text-login {
+  font-weight: 900;
+}

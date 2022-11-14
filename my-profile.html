@@ -46,23 +46,77 @@
           </li>
           <li class="nav-item">
             <div class="dropdown">
-              <a class="btn btn-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"></a>
+              <a class="btn btn-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                data-bs-toggle="dropdown" aria-expanded="false"></a>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
                 <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
                 <li><a class="dropdown-item" href="#" id="logout">Cerrar sesión</a></li>
               </ul>
-            </div>     
+            </div>
           </li>
         </ul>
       </div>
     </div>
   </nav>
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+    <div class="container-perfil">
+      <div class="d-flex justify-content-between mt-4">
+        <h2 class="my-4">Perfil</h2>
+        <img src="" alt="Imagen Perfil" class="imgProfile" id="imgSRC">
       </div>
+
+      <hr>
+      <form id="form" action="" class="row g-3 needs-validation" novalidate>
+        <div class="col-md-6">
+          <label for="inputName1" class="form-label">Primer Nombre *</label>
+          <input type="text" id="inputName1" class="form-control inputUser" required>
+          <div class="invalid-feedback">
+            Debe ingresar un nombre
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="inputName2" class="form-label">Segundo Nombre</label>
+          <input type="text" id="inputName2" class="form-control inputUser">
+        </div>
+
+        <div class="col-md-6">
+          <label for="inputLastname1" class="form-label">Primer Apellido *</label>
+          <input type="text" id="inputLastname1" class="form-control inputUser" required>
+          <div class="invalid-feedback">
+            Debe ingresar un apellido
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="inputLastname2" class="form-label">Segundo Apellido</label>
+          <input type="text" id="inputLastname2" class="form-control inputUser">
+        </div>
+
+        <div class="col-md-6">
+          <label for="inputMail" class="form-label">E - Mail *</label>
+          <input type="text" id="inputMail" class="form-control inputUser" required>
+          <div class="invalid-feedback">
+            Debe ingresar un E - Mail
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <label for="imgInput" class="form-label">Imagen de perfil</label>
+          <input type="file" id="imgInput" class="form-control" accept="image/png,image/jpeg">
+        </div>
+
+        <div class="col-md-6">
+          <label for="inputPhone" class="form-label">Telefono de contacto</label>
+          <input type="text" id="inputPhone" class="form-control inputUser">
+        </div>
+
+        <hr class="my-4">
+
+        <div class="col-12">
+          <button class="btn btn-primary" type="submit">Guardar Cambios</button>
+        </div>
+
+      </form>
     </div>
   </main>
   <footer class="text-muted">

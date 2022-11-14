@@ -1,10 +1,11 @@
 let resultCart = []
 let arrLocal = []
 let contador = 0
+let arrCart = [];
+let arr = []
 
  showCart = () => {
     html = "";
-
 
     for(let i = 0; i < resultCart.length; i++) {
         let cart = resultCart[i];
@@ -15,10 +16,9 @@ let contador = 0
                 <td>${cart.currency}${cart.unitCost}</td>
                 <td><input id="valor${i}" type="number" style="width: 70px;" class="inputNumberCalc rounded form-control" min="1" max="9" oninput="totalCost(${i}, ${cart.unitCost}), calcCost(), cantidadVerifcacion()" value="1"></td>      
                 <td class="cost"> ${cart.currency}<span id="total${i}">${cart.unitCost}</span> </td>   
-            </tr>
-            
+                <td onclick="deleteCart(${i})" id="trashJ${i}" class="trash"><i class="fa-solid fa-trash-can bordeTrash"></i></td>              
+            </tr>           
         `
-
         document.getElementById("tableCart").innerHTML = html        
     }
 
@@ -62,27 +62,24 @@ calcCost = () => {
 }
 
 
-
-addEventListener("DOMContentLoaded", function() {
-    SetUser();
-    getJSONData(CART_INFO_URL).then(function(respuesta) {
-        if(respuesta.status == "ok") {
-            result = respuesta.data.articles; 
-            let arrLocal = JSON.parse(localStorage.getItem("productoInfo"));
-            if(arrLocal != undefined) {
-                resultCart = result.concat(arrLocal);
-            } else {
-                resultCart = result
-            }       
-            showCart(); 
-            calcCost();
-            radioButton();
-            alertGood();     
-        }       
-    })  
-})
+// FUNCION DE PRUEBA DESAFIATE 6 (sin terminar)
+function deleteCart(idProduct) {
+    let arrCart = localStorage.getItem("productoInfo");
+    console.log(resultCart)
+    let arr = [];
+    if(idProduct == 0) {
+        resultCart = resultCart.splice(0, 1)
+    } else {
+        let anterior = idProduct + 1 
+        resultCart = resultCart.slice(anterior)
+    }
+    console.log(resultCart)
+    
+    showCart()
+}
 
 
+// RADIO BUTTON MODAL
 radioButton = () => {
     if(radiobtn1.checked) {
         document.querySelectorAll(".inputRadio1").forEach(input => {
@@ -108,26 +105,24 @@ radioButton = () => {
     }
 }
 
-
-
 //*  VALIDATION
 
-    form.addEventListener("submit", function(e) {    
-        if (form.checkValidity()) {
-            if(cantidadVerifcacion() && paymentValidity()) {
-                localStorage.setItem("alertCart", 1);              
-            } else {                
-                e.preventDefault();     
-                alertFail()
-            }          
-        } else {
-            e.preventDefault();
+form.addEventListener("submit", function(e) {    
+    if (form.checkValidity()) {
+        if(cantidadVerifcacion() && paymentValidity()) {
+            localStorage.setItem("alertCart", 1);              
+        } else {                
+            e.preventDefault();     
             alertFail()
-        };
-        cantidadVerifcacion()
-        form.classList.add('was-validated');    
-        noInput() 
-        paymentValidity()  
+        }          
+    } else {
+        e.preventDefault();
+        alertFail()
+    };
+    cantidadVerifcacion()
+    form.classList.add('was-validated');    
+    noInput() 
+    paymentValidity()  
         
 })
 
@@ -179,6 +174,8 @@ paymentValidity = () => {
     return cont == 0;
 }
 
+// ALERTAS
+
 alertGood = () => {
     let a = localStorage.getItem("alertCart");
     if(a == 1) {
@@ -204,3 +201,23 @@ alertFail = () => {
     `
     document.getElementById("alertFail").innerHTML = html;
 }
+
+
+addEventListener("DOMContentLoaded", function() {
+    SetUser();
+    getJSONData(CART_INFO_URL).then(function(respuesta) {
+        if(respuesta.status == "ok") {
+            result = respuesta.data.articles; 
+            let arrLocal = JSON.parse(localStorage.getItem("productoInfo"));
+            if(arrLocal != undefined) {
+                resultCart = result.concat(arrLocal);
+            } else {
+                resultCart = result
+            }       
+            showCart(); 
+            calcCost();
+            radioButton();
+            alertGood();     
+        }       
+    })  
+})

@@ -41,6 +41,8 @@ let getJSONData = function(url){
     });
 }
 
+
+// Funcion que se activa en todos los html para setear el USER
 let SetUser = function() {
   const a = document.getElementById("dropdownMenuLink");
   a.innerHTML = localStorage.getItem("Usuario")

@@ -3,11 +3,8 @@ productoComent = [];
 let contador = 0
 let carrito = []
 
-
 const workspace = document.getElementById("workspace");
 const workspaceComent = document.getElementById("workspaceComent");
-
-
 
 mostrarDatosProduct = () => {
     let html = `
@@ -71,8 +68,9 @@ mostrarDatosProduct = () => {
     mostrarImg();
 }
 
-mostrarImg = () => {
 
+// CAROUSEL
+mostrarImg = () => {
     html = "";
     imagen = productoInfo.images;
     for(let i = 0; i < imagen.length; i++) {
@@ -85,16 +83,15 @@ mostrarImg = () => {
                 </div>
             `
         } else {
-            html += `
+            html += 
+            `
                 <div class="carousel-item">
                     <img src="${img}" class="d-block w-100" alt="...">
                 </div>
             `
         }
-
     } 
     document.getElementById("carruselImg").innerHTML = html;
-
 }
 
 mostrarComent = () => {
@@ -102,16 +99,14 @@ mostrarComent = () => {
     for(let i = 0; i < productoComent.length; i++) {
         let comentarios = productoComent[i];
 
-        html = `
+        html = 
+        `
             <div class="comentDiv">
                 <p class="text-muted"><span class="titleComent">${comentarios.user}</span> -  ${comentarios.dateTime} 
                 - ${star(comentarios.score)} <br> ${comentarios.description}</p>
             </div>
-        `
-        
+        `       
         workspaceComent.innerHTML += html;
-        
-      
     }
 };
 
@@ -136,14 +131,11 @@ relacion = () => {
       `
 
       document.getElementById("relation").innerHTML += html
-    }
-
-    
+    }   
 }
 
-
+// BOTON DE AGREGAR AL CARRITO
 cartPush = () => {
-
     let arr = []
     let arrLocal = []
     let arrConcat = []
@@ -171,31 +163,7 @@ cartPush = () => {
         arrConcat = arr.concat(arrLocal);
         localStorage.setItem("productoInfo", JSON.stringify(arrConcat))   
     }
-}
-   
-document.addEventListener("DOMContentLoaded", function() {
-    SetUser();
-    getJSONData(PRODUCT_INFO_URL).then(function(respuesta) {
-        if(respuesta.status == "ok") {
-            productoInfo = respuesta.data;
-           
-            mostrarDatosProduct();
-            getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(respuestaComent) {
-                if(respuestaComent.status == "ok") {
-                    productoComent = respuestaComent.data
-                 
-                    mostrarComent();
-                    star();
-                    relacion();
-                    
-                    
-                }
-            }) 
-                     
-        }
-        
-    })
-})
+} 
 
 document.getElementById("form").addEventListener("submit" , function (e) {
     let a = document.getElementById("selectForm").value;
@@ -237,3 +205,23 @@ star = (score) => {
     } 
     return a;
 } 
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    SetUser();
+    getJSONData(PRODUCT_INFO_URL).then(function(respuesta) {
+        if(respuesta.status == "ok") {
+            productoInfo = respuesta.data;
+           
+            mostrarDatosProduct();
+            getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(respuestaComent) {
+                if(respuestaComent.status == "ok") {
+                    productoComent = respuestaComent.data                 
+                    mostrarComent();
+                    star();
+                    relacion();                                       
+                }
+            })                      
+        }        
+    })
+})

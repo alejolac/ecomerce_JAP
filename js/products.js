@@ -41,28 +41,21 @@ filtrar = (condicion, array) => {
 
 }
 
-filterNameInput = (search) => {
-    
+filterNameInput = (search) => {  
     console.log(search)
     const val = search.toLowerCase()
-    filter = currentProductArray.filter((product) => (product.name.toLowerCase().includes(val)));
-    
+    filter = currentProductArray.filter((product) => (product.name.toLowerCase().includes(val)));    
     showProductListF();
-
-    
 }
 
 
-setProductInfoID = id => {
+setProductID = id => {
     localStorage.setItem("productInfoID", id);
     window.location = "product-info.html"   
 }
 
 function showProductList(){
-
     let htmlContentToAppend = "";
-
- 
 
     for(let i = 0; i < currentProductArray.length; i++){
         let products = currentProductArray[i];
@@ -70,8 +63,9 @@ function showProductList(){
         if (((minCount == undefined) || (minCount != undefined && parseInt(products.cost) >= minCount)) &&
         ((maxCount == undefined) || (maxCount != undefined && parseInt(products.cost) <= maxCount))){
 
-            htmlContentToAppend += `
-            <div onclick="setProductInfoID(${products.id})" class="list-group-item list-group-item-action cursor-active">
+            htmlContentToAppend +=
+            `
+            <div onclick="setProductID(${products.id})" class="list-group-item list-group-item-action cursor-active">
                 <div class="row">
                     <div class="col-3">
                         <img src="${products.image}" alt="${products.description}" class="img-thumbnail">
@@ -85,40 +79,36 @@ function showProductList(){
                     </div>
                 </div>
             </div>
-            `
-            
+            `            
         }
-        
         document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
     }
-
 }
-
 
 showProductListF = () => {
     htmlContentToAppend = "";
-        for(let z = 0; z < filter.length; z++) {
-            let products = filter[z];
+    for(let z = 0; z < filter.length; z++) {
+        let products = filter[z];
 
-            htmlContentToAppend +=  `
-            <div onclick="setCatID(${products.id})" class="list-group-item list-group-item-action cursor-active">
-                <div class="row">
-                    <div class="col-3">
-                        <img src="${products.image}" alt="${products.description}" class="img-thumbnail">
+        htmlContentToAppend +=  
+        `
+        <div onclick="setCatID(${products.id})" class="list-group-item list-group-item-action cursor-active">
+            <div class="row">
+                <div class="col-3">
+                    <img src="${products.image}" alt="${products.description}" class="img-thumbnail">
+                </div>
+                <div class="col">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h4 class="mb-1">${products.name} - ${products.currency} ${products.cost}</h4>
+                        <small class="text-muted">${products.soldCount} artículos</small>
                     </div>
-                    <div class="col">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h4 class="mb-1">${products.name} - ${products.currency} ${products.cost}</h4>
-                            <small class="text-muted">${products.soldCount} artículos</small>
-                        </div>
-                        <p class="mb-1">${products.description}</p>
-                    </div>
+                    <p class="mb-1">${products.description}</p>
                 </div>
             </div>
-            `
-        }
-
-        document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
+        </div>
+        `
+    }
+    document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
 }
 
 function filtroPrecio(sortCriteria, productArray){
@@ -127,13 +117,9 @@ function filtroPrecio(sortCriteria, productArray){
     if(productArray != undefined){
         currentProductArray = productArray;
     }
-
     currentProductArray = filtrar(currentSortCriteria, currentProductArray);
-
     showProductList();
 }
-
-
 
 document.addEventListener("DOMContentLoaded", function(e){
     SetUser();
@@ -141,8 +127,7 @@ document.addEventListener("DOMContentLoaded", function(e){
         if (resultObj.status === "ok"){
             currentProductArray = resultObj.data.products
             filtroNombre = false;
-            showProductList()
-            
+            showProductList()         
         }
     });
 
