@@ -68,6 +68,10 @@ function deleteCart(idProduct) {
     arr = resultCart.splice(idProduct, 1)
     localStorage.setItem("productoInfo", JSON.stringify(resultCart))
     showCart()
+    calcCost()
+    totalCost()
+    
+
 }
 
 
