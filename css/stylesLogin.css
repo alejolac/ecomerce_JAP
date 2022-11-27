@@ -1,0 +1,103 @@
+/* Globales */
+
+body {
+    background-color: #f8f9fa;
+}
+
+.contenedor {
+    max-width: 320px;
+    margin: 0 auto; 
+}
+
+
+/* Imagen */ 
+
+.imgLogin {
+    text-align: center;
+    margin-top: none;
+}
+
+.imgLogin img {
+    max-width: 40%;
+}
+
+
+/* Login */
+
+.casillas {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.casillas input {
+    height: 45px;
+    margin-bottom: 13px;
+    border-radius: 3px;
+    border: none;
+    border-bottom: 1px solid grey;
+    text-indent: 25px;
+}
+
+.casillas input :focus {
+    outline: none;
+    border-bottom: 1px solid blue;
+}
+
+
+#error1, #error2 {
+    color: red;
+    margin-top: -15px;
+}
+
+i {
+    position: relative;
+    bottom: 44px;
+    left: 5px;
+    max-width: 14px;
+}
+
+.barraLogin {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+a {
+    color: black;
+    font-size: 15px;
+}
+
+a:hover {
+    color: rgb(129, 129, 129);
+}
+
+span {
+    margin-left: 10px;
+    color: rgb(92, 92, 92);
+    font-weight: 400;
+    font-size: 17px;
+}
+
+#peligro {
+    position: relative;
+    left: 290px;
+    bottom: 62px;
+    font-size: 20px;
+    color: red;
+}
+
+/* Boton */ 
+
+
+.btn {
+    margin-top: 20px;
+    background-color: #229fbc;
+    border: 1px solid rgb(158, 158, 158);
+    width: 100%;
+    margin-bottom: 100px;
+}
+
+.btn:hover {
+    border: 1px solid black;
+}
